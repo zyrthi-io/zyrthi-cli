@@ -1,9 +1,13 @@
-.PHONY: build test clean install
+# zyrthi-cli Makefile
 
-BINARY := zyrthi
+BINARY = zyrthi
+
+.PHONY: all build test clean install
+
+all: build
 
 build:
-	go build -o $(BINARY) .
+	go build -o $(BINARY) ./cmd
 
 test:
 	go test -v -race -coverprofile=coverage.out ./...
@@ -12,4 +16,4 @@ clean:
 	rm -f $(BINARY) coverage.out
 
 install: build
-	go install .
+	go install ./cmd
